@@ -1,3 +1,3 @@
 
 Action Results Action Parameters Convention-based Routing Attribute Routing Razor views
- add-migration addNameToMembershipType
+1. Add aa attributes to bbmodel.cs, thenadd-migration addAaToBb
