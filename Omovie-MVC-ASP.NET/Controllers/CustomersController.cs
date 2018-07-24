@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -7,11 +8,11 @@ using Omovie_MVC_ASP.NET.Models;
 
 namespace Omovie_MVC_ASP.NET.Controllers
 {
-    public class CustomerController : Controller
+    public class CustomersController : Controller
     {
         private ApplicationDbContext _context;
 
-        public CustomerController()
+        public CustomersController()
         {
             _context = new ApplicationDbContext();
         }
@@ -23,7 +24,7 @@ namespace Omovie_MVC_ASP.NET.Controllers
 
         public ViewResult Index()
         {
-            var customers = _context.Customers.ToList();
+            var customers = _context.Customers.Include(c => c.MembershipType).ToList();
 
             return View(customers);
         }
@@ -32,13 +33,13 @@ namespace Omovie_MVC_ASP.NET.Controllers
         {
             var customer = _context.Customers.SingleOrDefault(c => c.Id == id);
 
-            /*if (customer == null)
-            {
+            if (customer == null)
                 return HttpNotFound();
-            }*/
 
             return View(customer);
         }
+
+
     }
 
 

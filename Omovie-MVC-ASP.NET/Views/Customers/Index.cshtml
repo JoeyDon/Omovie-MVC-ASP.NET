@@ -1,7 +1,7 @@
 ﻿ 
 @model IEnumerable<Omovie_MVC_ASP.NET.Models.Customer>
 @{
-    ViewBag.Title = "Customer";
+    ViewBag.Title = "Customers";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
@@ -19,14 +19,17 @@ else
         <thead>
         <tr>
             <th>Customers</th>
+            <th>Discount Rate</th>
         </tr>
         </thead>
     
+        <tbody>
         <tbody>
         @foreach (var customer in Model)
         {
             <tr>
                 <td>@Html.ActionLink(customer.Name, "Details", "Customers", new { id = customer.Id }, null)</td>
+                <td>@customer.MembershipType.DiscountRate%</td>
             </tr>
         }
         </tbody>
